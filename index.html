@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulador Web — Carrito de Compras</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Simulador: Carrito de Compras</h1>
+    <p class="subtitle">DOM + Eventos + Storage, sin alerts/prompts</p>
+  </header>
+
+  <main class="container grid">
+    <!-- Catálogo / ABM de productos -->
+    <section class="card">
+      <h2>Catálogo</h2>
+
+      <form id="product-form" aria-label="Agregar o editar producto">
+        <input type="hidden" id="product-id" />
+        <div class="row">
+          <label for="name">Nombre</label>
+          <input id="name" name="name" type="text" placeholder="Ej: Teclado mecánico" required />
+        </div>
+        <div class="row">
+          <label for="price">Precio</label>
+          <input id="price" name="price" type="number" step="0.01" min="0" placeholder="Ej: 10.000" required />
+        </div>
+        <div class="row">
+          <label for="stock">Stock</label>
+          <input id="stock" name="stock" type="number" min="0" step="1" placeholder="Ej: 3" required />
+        </div>
+        <div class="row">
+          <button type="submit" class="btn primary" id="save-product">Guardar</button>
+          <button type="reset" class="btn" id="reset-form">Limpiar</button>
+        </div>
+        <p id="form-msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Buscar por nombre..." />
+        <button class="btn" id="seed-data">Cargar datos demo</button>
+        <button class="btn danger" id="clear-catalog">Vaciar catálogo</button>
+      </div>
+
+      <table class="table" id="catalog-table" aria-label="Listado de productos">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="catalog-body">
+          <!-- Filas creadas dinámicamente -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Carrito -->
+    <section class="card">
+      <h2>Carrito</h2>
+      <div class="toolbar">
+        <button class="btn" id="clear-cart">Vaciar carrito</button>
+      </div>
+      <table class="table" id="cart-table" aria-label="Productos en el carrito">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="cart-body">
+          <!-- Filas creadas dinámicamente -->
+        </tbody>
+      </table>
+      <div class="totals">
+        <span id="items-count">0 ítems</span>
+        <strong id="order-total">$0</strong>
+      </div>
+      <form id="checkout-form">
+        <h3>Finalizar compra</h3>
+        <div class="row">
+          <label for="customer">Cliente</label>
+          <input id="customer" name="customer" type="text" placeholder="Tu nombre" required />
+        </div>
+        <div class="row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="correo@ejemplo.com" required />
+        </div>
+        <button class="btn primary" type="submit">Confirmar pedido</button>
+        <p id="checkout-msg" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>Simulador académico — JS + DOM + localStorage. No se usa consola.</small>
+  </footer>
+
+  <!-- Módulos -->
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
